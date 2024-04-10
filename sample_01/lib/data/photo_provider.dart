@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
-import 'package:image_searcher/data/api.dart';
+import 'package:image_searcher/ui/home_view_model.dart';
 
 class PhotoProvider extends InheritedWidget { //원하는 위젯트리에 원하는 객체를 전달할 수 있게 해준다
-  final PixabayApi pixabayApi;
+
+  final HomeViewModel viewModel;
 
   const PhotoProvider({
-    required this.pixabayApi,
+    required this.viewModel,
     required super.child,
     super.key,
   });
@@ -17,9 +18,9 @@ class PhotoProvider extends InheritedWidget { //원하는 위젯트리에 원하
     return result!;
   }
 
-  //PixabayApi가 변경되면 다시 전달
+  //provider가 변경되면 다시 전달
   @override
   bool updateShouldNotify(PhotoProvider oldWidget) {
-    return oldWidget.pixabayApi != pixabayApi;
+    return true;
   }
 }
