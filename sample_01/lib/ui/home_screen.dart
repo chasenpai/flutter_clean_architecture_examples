@@ -1,13 +1,10 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:image_searcher/data/api.dart';
+import 'package:image_searcher/data/photo_provider.dart';
 import 'package:image_searcher/model/photo.dart';
 import 'package:image_searcher/ui/widget/photo_widget.dart';
-import 'package:http/http.dart' as http;
 
 class HomeScreen extends StatefulWidget {
-
   const HomeScreen({super.key});
 
   @override
@@ -15,19 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Photo> _photos = [];
   final _controller = TextEditingController();
-
-  Future<List<Photo>> fetch(String query) async {
-    final response = await http.get(
-      Uri.parse(
-        'https://pixabay.com/api/?key=43317620-e964699fb593e865af79eae08&q=$query&image_type=photo',
-      ),
-    );
-    Map<String, dynamic> jsonResponse = jsonDecode(response.body);
-    Iterable hits = jsonResponse['hits'];
-    return hits.map((e) => Photo.fromJson(e)).toList();
-  }
+  List<Photo> _photos = [];
 
   @override
   void dispose() {
@@ -37,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final photoProvider = PhotoProvider.of(context);
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -58,7 +45,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 suffixIcon: IconButton(
                   onPressed: () async {
-                    final photos = await fetch(_controller.text);
+                    final photos = await photoProvider.pixabayApi.fetch(_controller.text);
                     setState(() {
                       _photos = photos;
                     });
@@ -81,7 +68,9 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
               itemBuilder: (context, index) {
                 final photo = _photos[index];
-                return PhotoWidget(photo: photo,);
+                return PhotoWidget(
+                  photo: photo,
+                );
               },
             ),
           ),
