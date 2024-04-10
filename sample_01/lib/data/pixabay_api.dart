@@ -5,12 +5,13 @@ import 'dart:convert';
 
 class PixabayApi implements PhotoApiRepository {
 
-  final baseUrl = 'https://pixabay.com/api/';
-  final key = '43317620-e964699fb593e865af79eae08';
+  static const baseUrl = 'https://pixabay.com/api/';
+  static const key = '43317620-e964699fb593e865af79eae08';
 
   @override
-  Future<List<Photo>> fetch(String query) async {
-    final response = await http.get(
+  Future<List<Photo>> fetch(String query, {http.Client? client}) async {
+    client ??= http.Client();
+    final response = await client.get(
       Uri.parse(
         '$baseUrl?key=$key&q=$query&image_type=photo',
       ),
