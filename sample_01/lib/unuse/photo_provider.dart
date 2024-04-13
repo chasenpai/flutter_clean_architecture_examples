@@ -1,5 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:image_searcher/ui/home_view_model.dart';
+import 'package:image_searcher/presentation/home/home_view_model.dart';
 
 //InheritedWidget - 원하는 위젯트리에 원하는 객체를 전달할 수 있게 해준다
 //-> Provider로 대체

@@ -24,6 +24,8 @@ import 'package:json_annotation/json_annotation.dart';
 part 'photo.freezed.dart';
 part 'photo.g.dart';
 
+//Domain Layer
+//- Entity(Model Class)
 @freezed
 class Photo with _$Photo {
   const factory Photo({

@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:image_searcher/data/photo_api_repository.dart';
-import 'package:image_searcher/model/photo.dart';
-import 'package:image_searcher/ui/home_view_model.dart';
+import 'package:image_searcher/domain/repository/photo_api_repository.dart';
+import 'package:image_searcher/domain/model/photo.dart';
+import 'package:image_searcher/presentation/home/home_view_model.dart';
 
 void main() {
   //테스트는 의존되는 객체에 의해 결과가 달라지면 안된다

@@ -2,8 +2,8 @@ import 'dart:async';
 import 'dart:collection';
 
 import 'package:flutter/cupertino.dart';
-import 'package:image_searcher/data/photo_api_repository.dart';
-import 'package:image_searcher/model/photo.dart';
+import 'package:image_searcher/domain/repository/photo_api_repository.dart';
+import 'package:image_searcher/domain/model/photo.dart';
 
 /*
  MVVM - ViewModel
@@ -13,6 +13,8 @@ import 'package:image_searcher/model/photo.dart';
  ViewModel은 View에 의존하지 않기 때문에
  여러 개의 View가 하나의 ViewModel을 참조할 수 있다
  */
+//Presentation Layer
+//- ViewModel
 class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
   //final _photoStreamController = StreamController<List<Photo>>()..add([]);

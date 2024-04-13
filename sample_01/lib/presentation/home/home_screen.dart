@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:image_searcher/data/pixabay_api.dart';
-import 'package:image_searcher/data/photo_provider.dart';
-import 'package:image_searcher/model/photo.dart';
-import 'package:image_searcher/ui/home_view_model.dart';
-import 'package:image_searcher/ui/widget/photo_widget.dart';
+import 'package:image_searcher/presentation/home/home_view_model.dart';
+import 'package:image_searcher/presentation/home/component/photo_widget.dart';
 import 'package:provider/provider.dart';
 
+//Presentation Layer
+//- View
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 

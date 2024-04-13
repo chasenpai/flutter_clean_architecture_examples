@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:image_searcher/model/photo.dart';
+import 'package:image_searcher/domain/model/photo.dart';
 
 class PhotoWidget extends StatelessWidget {
   final Photo photo;
