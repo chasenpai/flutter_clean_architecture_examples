@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:image_searcher/domain/repository/photo_api_repository.dart';
 import 'package:image_searcher/domain/model/photo.dart';
+import 'package:image_searcher/presentation/home/home_ui_event.dart';
 
 /*
  MVVM - ViewModel
@@ -14,25 +15,29 @@ import 'package:image_searcher/domain/model/photo.dart';
  여러 개의 View가 하나의 ViewModel을 참조할 수 있다
  */
 //Presentation Layer
-//- ViewModel
+//ViewModel - Use Case를 활용해 View에 데이터를 표현
 class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
-  //final _photoStreamController = StreamController<List<Photo>>()..add([]);
-  //Stream<List<Photo>> get photoStream => _photoStreamController.stream;
 
-  //Stream -> Provider
   List<Photo> _photos = [];
-  UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos); //수정 불가 리스트
+  UnmodifiableListView<Photo> get photos =>
+      UnmodifiableListView(_photos); //수정 불가 리스트
+
+  final _eventController = StreamController<HomeUiEvent>();
+  Stream<HomeUiEvent> get eventStream => _eventController.stream;
 
   HomeViewModel(this.repository);
 
-  // Future<void> fetch(String query) async {
-  //   final result = await repository.fetch(query);
-  //   _photoStreamController.add(result);
-  // }
   Future<void> fetch(String query) async {
     final result = await repository.fetch(query);
-    _photos = result;
-    notifyListeners(); //watch하고있는 곳에 알려준다
+    result.when(
+      success: (photos) {
+        _photos = photos;
+        notifyListeners(); //watch하고있는 곳에 알려준다
+      },
+      error: (message) {
+        _eventController.add(HomeUiEvent.showSnackBar(message));
+      },
+    );
   }
 }

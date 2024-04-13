@@ -1,6 +1,8 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:image_searcher/data/data_source/pixabay_api.dart';
+import 'package:image_searcher/data/data_source/result.dart';
 import 'package:image_searcher/data/repository/photo_api_repository_impl.dart';
+import 'package:image_searcher/domain/model/photo.dart';
 import 'package:mockito/annotations.dart';
 import 'package:http/http.dart' as http;
 import 'package:mockito/mockito.dart';
@@ -16,7 +18,7 @@ void main() {
     when(client.get(Uri.parse('${PixabayApi.baseUrl}?key=${PixabayApi.key}&q=pizza&image_type=photo'),))
     .thenAnswer((_) async => http.Response(dummyJsonBody, 200));
     final result = await api.fetch('pizza');
-    expect(result.length, 20);
+    expect((result as Success<List<Photo>>).data.length, 20);
     verify(client.get(Uri.parse('${PixabayApi.baseUrl}?key=${PixabayApi.key}&q=pizza&image_type=photo')));
   });
 }
