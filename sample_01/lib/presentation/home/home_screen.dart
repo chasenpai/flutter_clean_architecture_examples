@@ -80,23 +80,26 @@ class _HomeScreenState extends State<HomeScreen> {
           //Consumer를 사용하여 성능 향상 - 하지만 트레이드 오프에 대한 고민(가독성 등)
           Consumer<HomeViewModel>(
             builder: (_, viewModel, child) {
-              return Expanded(
-                child: GridView.builder(
-                  padding: const EdgeInsets.all(16.0),
-                  itemCount: viewModel.photos.length,
-                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    crossAxisSpacing: 16.0,
-                    mainAxisSpacing: 16.0,
-                  ),
-                  itemBuilder: (context, index) {
-                    final photo = viewModel.photos[index];
-                    return PhotoWidget(
-                      photo: photo,
+              return viewModel.state.isLoading
+                  ? const CircularProgressIndicator()
+                  : Expanded(
+                      child: GridView.builder(
+                        padding: const EdgeInsets.all(16.0),
+                        itemCount: viewModel.state.photos.length,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          crossAxisSpacing: 16.0,
+                          mainAxisSpacing: 16.0,
+                        ),
+                        itemBuilder: (context, index) {
+                          final photo = viewModel.state.photos[index];
+                          return PhotoWidget(
+                            photo: photo,
+                          );
+                        },
+                      ),
                     );
-                  },
-                ),
-              );
             },
           ),
         ],

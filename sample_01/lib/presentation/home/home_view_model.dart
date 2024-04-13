@@ -4,6 +4,7 @@ import 'dart:collection';
 import 'package:flutter/cupertino.dart';
 import 'package:image_searcher/domain/repository/photo_api_repository.dart';
 import 'package:image_searcher/domain/model/photo.dart';
+import 'package:image_searcher/presentation/home/home_state.dart';
 import 'package:image_searcher/presentation/home/home_ui_event.dart';
 
 /*
@@ -19,25 +20,28 @@ import 'package:image_searcher/presentation/home/home_ui_event.dart';
 class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
 
-  List<Photo> _photos = [];
-  UnmodifiableListView<Photo> get photos =>
-      UnmodifiableListView(_photos); //수정 불가 리스트
-
   final _eventController = StreamController<HomeUiEvent>();
   Stream<HomeUiEvent> get eventStream => _eventController.stream;
+
+  //ViewModel 내부에서 외부로 공개되는 데이터들은 다 읽기 전용으로 만들자
+  HomeState _state = const HomeState([], false);
+  HomeState get state => _state;
 
   HomeViewModel(this.repository);
 
   Future<void> fetch(String query) async {
+    _state = state.copyWith(isLoading: true);
+    notifyListeners();
     final result = await repository.fetch(query);
     result.when(
       success: (photos) {
-        _photos = photos;
-        notifyListeners(); //watch하고있는 곳에 알려준다
+        _state = state.copyWith(photos: photos);
       },
       error: (message) {
         _eventController.add(HomeUiEvent.showSnackBar(message));
       },
     );
+    _state = state.copyWith(isLoading: false);
+    notifyListeners();
   }
 }
