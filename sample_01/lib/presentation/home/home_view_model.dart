@@ -1,9 +1,6 @@
 import 'dart:async';
-import 'dart:collection';
-
 import 'package:flutter/cupertino.dart';
-import 'package:image_searcher/domain/repository/photo_api_repository.dart';
-import 'package:image_searcher/domain/model/photo.dart';
+import 'package:image_searcher/domain/use_case/get_photos_use_case.dart';
 import 'package:image_searcher/presentation/home/home_state.dart';
 import 'package:image_searcher/presentation/home/home_ui_event.dart';
 
@@ -18,7 +15,7 @@ import 'package:image_searcher/presentation/home/home_ui_event.dart';
 //Presentation Layer
 //ViewModel - Use Case를 활용해 View에 데이터를 표현
 class HomeViewModel with ChangeNotifier {
-  final PhotoApiRepository repository;
+  final GetPhotosUseCase useCase;
 
   final _eventController = StreamController<HomeUiEvent>();
   Stream<HomeUiEvent> get eventStream => _eventController.stream;
@@ -27,12 +24,12 @@ class HomeViewModel with ChangeNotifier {
   HomeState _state = const HomeState([], false);
   HomeState get state => _state;
 
-  HomeViewModel(this.repository);
+  HomeViewModel(this.useCase);
 
   Future<void> fetch(String query) async {
     _state = state.copyWith(isLoading: true);
     notifyListeners();
-    final result = await repository.fetch(query);
+    final result = await useCase(query);
     result.when(
       success: (photos) {
         _state = state.copyWith(photos: photos);
