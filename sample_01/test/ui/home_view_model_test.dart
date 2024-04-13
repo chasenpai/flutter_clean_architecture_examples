@@ -9,13 +9,7 @@ void main() {
     final viewModel = HomeViewModel(DummyPhotoApiRepository());
     await viewModel.fetch('test');
     final result = dummyJson.map((e) => Photo.fromJson(e)).toList();
-    expect(
-      viewModel.photoStream,
-      emitsInOrder([
-        equals([]),
-        equals(result),
-      ]),
-    );
+    expect(viewModel.photos, result);
   });
 }
 

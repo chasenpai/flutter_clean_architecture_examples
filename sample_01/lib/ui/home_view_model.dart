@@ -1,5 +1,7 @@
 import 'dart:async';
+import 'dart:collection';
 
+import 'package:flutter/cupertino.dart';
 import 'package:image_searcher/data/photo_api_repository.dart';
 import 'package:image_searcher/model/photo.dart';
 
@@ -11,16 +13,24 @@ import 'package:image_searcher/model/photo.dart';
  ViewModel은 View에 의존하지 않기 때문에
  여러 개의 View가 하나의 ViewModel을 참조할 수 있다
  */
-class HomeViewModel {
+class HomeViewModel with ChangeNotifier {
   final PhotoApiRepository repository;
-  final _photoStreamController = StreamController<List<Photo>>()..add([]);
+  //final _photoStreamController = StreamController<List<Photo>>()..add([]);
+  //Stream<List<Photo>> get photoStream => _photoStreamController.stream;
 
-  Stream<List<Photo>> get photoStream => _photoStreamController.stream;
+  //Stream -> Provider
+  List<Photo> _photos = [];
+  UnmodifiableListView<Photo> get photos => UnmodifiableListView(_photos); //수정 불가 리스트
 
   HomeViewModel(this.repository);
 
+  // Future<void> fetch(String query) async {
+  //   final result = await repository.fetch(query);
+  //   _photoStreamController.add(result);
+  // }
   Future<void> fetch(String query) async {
     final result = await repository.fetch(query);
-    _photoStreamController.add(result);
+    _photos = result;
+    notifyListeners(); //watch하고있는 곳에 알려준다
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:image_searcher/ui/home_view_model.dart';
 
-class PhotoProvider extends InheritedWidget { //원하는 위젯트리에 원하는 객체를 전달할 수 있게 해준다
+//InheritedWidget - 원하는 위젯트리에 원하는 객체를 전달할 수 있게 해준다
+//-> Provider로 대체
+class PhotoProvider extends InheritedWidget {
 
   final HomeViewModel viewModel;
 

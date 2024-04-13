@@ -22,7 +22,8 @@ Photo _$PhotoFromJson(Map<String, dynamic> json) {
 mixin _$Photo {
   int get id => throw _privateConstructorUsedError;
   String get tags => throw _privateConstructorUsedError;
-  String get previewURL => throw _privateConstructorUsedError;
+  @JsonKey(name: 'previewURL')
+  String get previewUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -34,7 +35,8 @@ abstract class $PhotoCopyWith<$Res> {
   factory $PhotoCopyWith(Photo value, $Res Function(Photo) then) =
       _$PhotoCopyWithImpl<$Res, Photo>;
   @useResult
-  $Res call({int id, String tags, String previewURL});
+  $Res call(
+      {int id, String tags, @JsonKey(name: 'previewURL') String previewUrl});
 }
 
 /// @nodoc
@@ -52,7 +54,7 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
   $Res call({
     Object? id = null,
     Object? tags = null,
-    Object? previewURL = null,
+    Object? previewUrl = null,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -63,9 +65,9 @@ class _$PhotoCopyWithImpl<$Res, $Val extends Photo>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as String,
-      previewURL: null == previewURL
-          ? _value.previewURL
-          : previewURL // ignore: cast_nullable_to_non_nullable
+      previewUrl: null == previewUrl
+          ? _value.previewUrl
+          : previewUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ) as $Val);
   }
@@ -78,7 +80,8 @@ abstract class _$$PhotoImplCopyWith<$Res> implements $PhotoCopyWith<$Res> {
       __$$PhotoImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({int id, String tags, String previewURL});
+  $Res call(
+      {int id, String tags, @JsonKey(name: 'previewURL') String previewUrl});
 }
 
 /// @nodoc
@@ -94,7 +97,7 @@ class __$$PhotoImplCopyWithImpl<$Res>
   $Res call({
     Object? id = null,
     Object? tags = null,
-    Object? previewURL = null,
+    Object? previewUrl = null,
   }) {
     return _then(_$PhotoImpl(
       id: null == id
@@ -105,9 +108,9 @@ class __$$PhotoImplCopyWithImpl<$Res>
           ? _value.tags
           : tags // ignore: cast_nullable_to_non_nullable
               as String,
-      previewURL: null == previewURL
-          ? _value.previewURL
-          : previewURL // ignore: cast_nullable_to_non_nullable
+      previewUrl: null == previewUrl
+          ? _value.previewUrl
+          : previewUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -117,7 +120,9 @@ class __$$PhotoImplCopyWithImpl<$Res>
 @JsonSerializable()
 class _$PhotoImpl implements _Photo {
   const _$PhotoImpl(
-      {required this.id, required this.tags, required this.previewURL});
+      {required this.id,
+      required this.tags,
+      @JsonKey(name: 'previewURL') required this.previewUrl});
 
   factory _$PhotoImpl.fromJson(Map<String, dynamic> json) =>
       _$$PhotoImplFromJson(json);
@@ -127,11 +132,12 @@ class _$PhotoImpl implements _Photo {
   @override
   final String tags;
   @override
-  final String previewURL;
+  @JsonKey(name: 'previewURL')
+  final String previewUrl;
 
   @override
   String toString() {
-    return 'Photo(id: $id, tags: $tags, previewURL: $previewURL)';
+    return 'Photo(id: $id, tags: $tags, previewUrl: $previewUrl)';
   }
 
   @override
@@ -141,13 +147,13 @@ class _$PhotoImpl implements _Photo {
             other is _$PhotoImpl &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.tags, tags) || other.tags == tags) &&
-            (identical(other.previewURL, previewURL) ||
-                other.previewURL == previewURL));
+            (identical(other.previewUrl, previewUrl) ||
+                other.previewUrl == previewUrl));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, tags, previewURL);
+  int get hashCode => Object.hash(runtimeType, id, tags, previewUrl);
 
   @JsonKey(ignore: true)
   @override
@@ -165,9 +171,10 @@ class _$PhotoImpl implements _Photo {
 
 abstract class _Photo implements Photo {
   const factory _Photo(
-      {required final int id,
-      required final String tags,
-      required final String previewURL}) = _$PhotoImpl;
+          {required final int id,
+          required final String tags,
+          @JsonKey(name: 'previewURL') required final String previewUrl}) =
+      _$PhotoImpl;
 
   factory _Photo.fromJson(Map<String, dynamic> json) = _$PhotoImpl.fromJson;
 
@@ -176,7 +183,8 @@ abstract class _Photo implements Photo {
   @override
   String get tags;
   @override
-  String get previewURL;
+  @JsonKey(name: 'previewURL')
+  String get previewUrl;
   @override
   @JsonKey(ignore: true)
   _$$PhotoImplCopyWith<_$PhotoImpl> get copyWith =>
