@@ -4,7 +4,7 @@ abstract class NoteRepository {
 
   Future<List<Note>> getNotes();
 
-  Future<Note> getNoteById(int id);
+  Future<Note?> getNoteById(int id);
 
   Future<void> saveNote(Note note);
 
