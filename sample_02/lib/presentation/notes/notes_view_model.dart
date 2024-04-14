@@ -1,18 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:note/domain/model/note.dart';
-import 'package:note/domain/repository/note_repository.dart';
+import 'package:note/domain/uitl/note_order.dart';
+import 'package:note/domain/uitl/order_type.dart';
+import 'package:note/domain/use_case/use_cases.dart';
 import 'package:note/presentation/notes/notes_event.dart';
 import 'package:note/presentation/notes/notes_state.dart';
 
 class NotesViewModel with ChangeNotifier {
-  final NoteRepository repository;
+  final UseCases useCases;
 
-  NotesState _state = const NotesState(notes: []);
+  NotesState _state = const NotesState(
+    notes: [],
+    noteOrder: NoteOrder.date(OrderType.desc()),
+  );
   NotesState get state => _state;
 
   Note? _recentlyDeletedNote;
 
-  NotesViewModel(this.repository);
+  NotesViewModel(this.useCases) {
+    _loadNotes();
+  }
 
   void onEvent(NotesEvent event) {
     event.when(
@@ -23,7 +30,7 @@ class NotesViewModel with ChangeNotifier {
   }
 
   Future<void> _loadNotes() async {
-    List<Note> notes = await repository.getNotes();
+    List<Note> notes = await useCases.getNotes(state.noteOrder);
     _state = state.copyWith(
       notes: notes,
     );
@@ -31,14 +38,14 @@ class NotesViewModel with ChangeNotifier {
   }
 
   Future<void> _deleteNote(Note note) async {
-    await repository.deleteNote(note);
+    await useCases.deleteNote(note);
     _recentlyDeletedNote = note;
     await _loadNotes();
   }
 
   Future<void> _restoreNote() async {
     if(_recentlyDeletedNote != null) {
-      await repository.saveNote(_recentlyDeletedNote!);
+      await useCases.addNote(_recentlyDeletedNote!);
       _recentlyDeletedNote = null;
       await _loadNotes();
     }

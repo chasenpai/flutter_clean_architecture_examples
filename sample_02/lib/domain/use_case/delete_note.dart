@@ -1,7 +1,7 @@
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/repository/note_repository.dart';
 
-class DeleteNote {
+class DeleteNote{
   final NoteRepository repository;
 
   DeleteNote(this.repository);

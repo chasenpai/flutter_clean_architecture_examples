@@ -1,15 +1,23 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:note/domain/model/note.dart';
 import 'package:note/domain/repository/note_repository.dart';
 import 'package:note/presentation/add_edit_note/add_edit_note_event.dart';
+import 'package:note/presentation/add_edit_note/add_edit_note_ui_event.dart';
+import 'package:note/ui/colors.dart';
 
 class AddEditNoteViewModel with ChangeNotifier {
   final NoteRepository repository;
 
-  int _color = Colors.orange.value;
+  int _color = roseBud.value;
 
   int get color => _color;
+
+  //한번 리슨을 하고나면 다시 리슨을 할 수 없다 - broadcast 사용
+  final _eventController = StreamController<AddEditNoteUiEvent>.broadcast();
+  Stream<AddEditNoteUiEvent> get eventStream => _eventController.stream;
 
   AddEditNoteViewModel(this.repository);
 
@@ -26,6 +34,10 @@ class AddEditNoteViewModel with ChangeNotifier {
   }
 
   Future<void> _saveNote(int? id, String title, String content) async {
+    if(title.isEmpty || content.isEmpty) {
+      _eventController.add(const AddEditNoteUiEvent.showSnackBar('title or content is empty'));
+      return;
+    }
     if (id == null) {
       await repository.saveNote(
         Note(
@@ -46,5 +58,6 @@ class AddEditNoteViewModel with ChangeNotifier {
         ),
       );
     }
+    _eventController.add(const AddEditNoteUiEvent.saveNote());
   }
 }
