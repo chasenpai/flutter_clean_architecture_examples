@@ -16,26 +16,26 @@ final _privateConstructorUsedError = UnsupportedError(
 
 /// @nodoc
 mixin _$NoteOrder {
-  OrderType get type => throw _privateConstructorUsedError;
+  OrderType get orderType => throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderType type) title,
-    required TResult Function(OrderType type) date,
-    required TResult Function(OrderType type) color,
+    required TResult Function(OrderType orderType) title,
+    required TResult Function(OrderType orderType) date,
+    required TResult Function(OrderType orderType) color,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderType type)? title,
-    TResult? Function(OrderType type)? date,
-    TResult? Function(OrderType type)? color,
+    TResult? Function(OrderType orderType)? title,
+    TResult? Function(OrderType orderType)? date,
+    TResult? Function(OrderType orderType)? color,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderType type)? title,
-    TResult Function(OrderType type)? date,
-    TResult Function(OrderType type)? color,
+    TResult Function(OrderType orderType)? title,
+    TResult Function(OrderType orderType)? date,
+    TResult Function(OrderType orderType)? color,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -72,9 +72,9 @@ abstract class $NoteOrderCopyWith<$Res> {
   factory $NoteOrderCopyWith(NoteOrder value, $Res Function(NoteOrder) then) =
       _$NoteOrderCopyWithImpl<$Res, NoteOrder>;
   @useResult
-  $Res call({OrderType type});
+  $Res call({OrderType orderType});
 
-  $OrderTypeCopyWith<$Res> get type;
+  $OrderTypeCopyWith<$Res> get orderType;
 }
 
 /// @nodoc
@@ -90,21 +90,21 @@ class _$NoteOrderCopyWithImpl<$Res, $Val extends NoteOrder>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? orderType = null,
   }) {
     return _then(_value.copyWith(
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      orderType: null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $OrderTypeCopyWith<$Res> get type {
-    return $OrderTypeCopyWith<$Res>(_value.type, (value) {
-      return _then(_value.copyWith(type: value) as $Val);
+  $OrderTypeCopyWith<$Res> get orderType {
+    return $OrderTypeCopyWith<$Res>(_value.orderType, (value) {
+      return _then(_value.copyWith(orderType: value) as $Val);
     });
   }
 }
@@ -117,10 +117,10 @@ abstract class _$$NoteOrderTitleImplCopyWith<$Res>
       __$$NoteOrderTitleImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OrderType type});
+  $Res call({OrderType orderType});
 
   @override
-  $OrderTypeCopyWith<$Res> get type;
+  $OrderTypeCopyWith<$Res> get orderType;
 }
 
 /// @nodoc
@@ -134,12 +134,12 @@ class __$$NoteOrderTitleImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? orderType = null,
   }) {
     return _then(_$NoteOrderTitleImpl(
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType,
     ));
   }
@@ -148,14 +148,14 @@ class __$$NoteOrderTitleImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NoteOrderTitleImpl implements NoteOrderTitle {
-  const _$NoteOrderTitleImpl(this.type);
+  const _$NoteOrderTitleImpl(this.orderType);
 
   @override
-  final OrderType type;
+  final OrderType orderType;
 
   @override
   String toString() {
-    return 'NoteOrder.title(type: $type)';
+    return 'NoteOrder.title(orderType: $orderType)';
   }
 
   @override
@@ -163,11 +163,12 @@ class _$NoteOrderTitleImpl implements NoteOrderTitle {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NoteOrderTitleImpl &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type);
+  int get hashCode => Object.hash(runtimeType, orderType);
 
   @JsonKey(ignore: true)
   @override
@@ -179,33 +180,33 @@ class _$NoteOrderTitleImpl implements NoteOrderTitle {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderType type) title,
-    required TResult Function(OrderType type) date,
-    required TResult Function(OrderType type) color,
+    required TResult Function(OrderType orderType) title,
+    required TResult Function(OrderType orderType) date,
+    required TResult Function(OrderType orderType) color,
   }) {
-    return title(type);
+    return title(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderType type)? title,
-    TResult? Function(OrderType type)? date,
-    TResult? Function(OrderType type)? color,
+    TResult? Function(OrderType orderType)? title,
+    TResult? Function(OrderType orderType)? date,
+    TResult? Function(OrderType orderType)? color,
   }) {
-    return title?.call(type);
+    return title?.call(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderType type)? title,
-    TResult Function(OrderType type)? date,
-    TResult Function(OrderType type)? color,
+    TResult Function(OrderType orderType)? title,
+    TResult Function(OrderType orderType)? date,
+    TResult Function(OrderType orderType)? color,
     required TResult orElse(),
   }) {
     if (title != null) {
-      return title(type);
+      return title(orderType);
     }
     return orElse();
   }
@@ -246,10 +247,11 @@ class _$NoteOrderTitleImpl implements NoteOrderTitle {
 }
 
 abstract class NoteOrderTitle implements NoteOrder {
-  const factory NoteOrderTitle(final OrderType type) = _$NoteOrderTitleImpl;
+  const factory NoteOrderTitle(final OrderType orderType) =
+      _$NoteOrderTitleImpl;
 
   @override
-  OrderType get type;
+  OrderType get orderType;
   @override
   @JsonKey(ignore: true)
   _$$NoteOrderTitleImplCopyWith<_$NoteOrderTitleImpl> get copyWith =>
@@ -264,10 +266,10 @@ abstract class _$$NoteOrderDateImplCopyWith<$Res>
       __$$NoteOrderDateImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OrderType type});
+  $Res call({OrderType orderType});
 
   @override
-  $OrderTypeCopyWith<$Res> get type;
+  $OrderTypeCopyWith<$Res> get orderType;
 }
 
 /// @nodoc
@@ -281,12 +283,12 @@ class __$$NoteOrderDateImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? orderType = null,
   }) {
     return _then(_$NoteOrderDateImpl(
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType,
     ));
   }
@@ -295,14 +297,14 @@ class __$$NoteOrderDateImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NoteOrderDateImpl implements NoteOrderDate {
-  const _$NoteOrderDateImpl(this.type);
+  const _$NoteOrderDateImpl(this.orderType);
 
   @override
-  final OrderType type;
+  final OrderType orderType;
 
   @override
   String toString() {
-    return 'NoteOrder.date(type: $type)';
+    return 'NoteOrder.date(orderType: $orderType)';
   }
 
   @override
@@ -310,11 +312,12 @@ class _$NoteOrderDateImpl implements NoteOrderDate {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NoteOrderDateImpl &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type);
+  int get hashCode => Object.hash(runtimeType, orderType);
 
   @JsonKey(ignore: true)
   @override
@@ -325,33 +328,33 @@ class _$NoteOrderDateImpl implements NoteOrderDate {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderType type) title,
-    required TResult Function(OrderType type) date,
-    required TResult Function(OrderType type) color,
+    required TResult Function(OrderType orderType) title,
+    required TResult Function(OrderType orderType) date,
+    required TResult Function(OrderType orderType) color,
   }) {
-    return date(type);
+    return date(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderType type)? title,
-    TResult? Function(OrderType type)? date,
-    TResult? Function(OrderType type)? color,
+    TResult? Function(OrderType orderType)? title,
+    TResult? Function(OrderType orderType)? date,
+    TResult? Function(OrderType orderType)? color,
   }) {
-    return date?.call(type);
+    return date?.call(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderType type)? title,
-    TResult Function(OrderType type)? date,
-    TResult Function(OrderType type)? color,
+    TResult Function(OrderType orderType)? title,
+    TResult Function(OrderType orderType)? date,
+    TResult Function(OrderType orderType)? color,
     required TResult orElse(),
   }) {
     if (date != null) {
-      return date(type);
+      return date(orderType);
     }
     return orElse();
   }
@@ -392,10 +395,10 @@ class _$NoteOrderDateImpl implements NoteOrderDate {
 }
 
 abstract class NoteOrderDate implements NoteOrder {
-  const factory NoteOrderDate(final OrderType type) = _$NoteOrderDateImpl;
+  const factory NoteOrderDate(final OrderType orderType) = _$NoteOrderDateImpl;
 
   @override
-  OrderType get type;
+  OrderType get orderType;
   @override
   @JsonKey(ignore: true)
   _$$NoteOrderDateImplCopyWith<_$NoteOrderDateImpl> get copyWith =>
@@ -410,10 +413,10 @@ abstract class _$$NoteOrderColorImplCopyWith<$Res>
       __$$NoteOrderColorImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({OrderType type});
+  $Res call({OrderType orderType});
 
   @override
-  $OrderTypeCopyWith<$Res> get type;
+  $OrderTypeCopyWith<$Res> get orderType;
 }
 
 /// @nodoc
@@ -427,12 +430,12 @@ class __$$NoteOrderColorImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? type = null,
+    Object? orderType = null,
   }) {
     return _then(_$NoteOrderColorImpl(
-      null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
+      null == orderType
+          ? _value.orderType
+          : orderType // ignore: cast_nullable_to_non_nullable
               as OrderType,
     ));
   }
@@ -441,14 +444,14 @@ class __$$NoteOrderColorImplCopyWithImpl<$Res>
 /// @nodoc
 
 class _$NoteOrderColorImpl implements NoteOrderColor {
-  const _$NoteOrderColorImpl(this.type);
+  const _$NoteOrderColorImpl(this.orderType);
 
   @override
-  final OrderType type;
+  final OrderType orderType;
 
   @override
   String toString() {
-    return 'NoteOrder.color(type: $type)';
+    return 'NoteOrder.color(orderType: $orderType)';
   }
 
   @override
@@ -456,11 +459,12 @@ class _$NoteOrderColorImpl implements NoteOrderColor {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _$NoteOrderColorImpl &&
-            (identical(other.type, type) || other.type == type));
+            (identical(other.orderType, orderType) ||
+                other.orderType == orderType));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, type);
+  int get hashCode => Object.hash(runtimeType, orderType);
 
   @JsonKey(ignore: true)
   @override
@@ -472,33 +476,33 @@ class _$NoteOrderColorImpl implements NoteOrderColor {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(OrderType type) title,
-    required TResult Function(OrderType type) date,
-    required TResult Function(OrderType type) color,
+    required TResult Function(OrderType orderType) title,
+    required TResult Function(OrderType orderType) date,
+    required TResult Function(OrderType orderType) color,
   }) {
-    return color(type);
+    return color(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(OrderType type)? title,
-    TResult? Function(OrderType type)? date,
-    TResult? Function(OrderType type)? color,
+    TResult? Function(OrderType orderType)? title,
+    TResult? Function(OrderType orderType)? date,
+    TResult? Function(OrderType orderType)? color,
   }) {
-    return color?.call(type);
+    return color?.call(orderType);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(OrderType type)? title,
-    TResult Function(OrderType type)? date,
-    TResult Function(OrderType type)? color,
+    TResult Function(OrderType orderType)? title,
+    TResult Function(OrderType orderType)? date,
+    TResult Function(OrderType orderType)? color,
     required TResult orElse(),
   }) {
     if (color != null) {
-      return color(type);
+      return color(orderType);
     }
     return orElse();
   }
@@ -539,10 +543,11 @@ class _$NoteOrderColorImpl implements NoteOrderColor {
 }
 
 abstract class NoteOrderColor implements NoteOrder {
-  const factory NoteOrderColor(final OrderType type) = _$NoteOrderColorImpl;
+  const factory NoteOrderColor(final OrderType orderType) =
+      _$NoteOrderColorImpl;
 
   @override
-  OrderType get type;
+  OrderType get orderType;
   @override
   @JsonKey(ignore: true)
   _$$NoteOrderColorImplCopyWith<_$NoteOrderColorImpl> get copyWith =>

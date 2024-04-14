@@ -75,7 +75,7 @@ class _AddEditNoteScreenState extends State<AddEditNoteScreen> {
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         color: Color(viewModel.color),
         child: SafeArea(
-          child: Column(
+          child: ListView(
             children: [
               const SizedBox(
                 height: 16,
