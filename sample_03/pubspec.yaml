@@ -41,6 +41,7 @@ dependencies:
   json_annotation: ^4.8.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  csv: ^6.0.0
 
 dev_dependencies:
   flutter_test:
