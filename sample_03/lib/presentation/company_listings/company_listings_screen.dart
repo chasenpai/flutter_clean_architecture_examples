@@ -41,7 +41,7 @@ class CompanyListingsScreen extends StatelessWidget {
                   ),
                   labelText: 'search...',
                   labelStyle: TextStyle(
-                    color: Theme.of(context).colorScheme.secondary,
+                    color: Theme.of(context).colorScheme.onSurface,
                   ),
                 ),
               ),
@@ -77,7 +77,7 @@ class CompanyListingsScreen extends StatelessWidget {
                             },
                           ),
                           Divider(
-                            color: Theme.of(context).colorScheme.secondary,
+                            color: Theme.of(context).colorScheme.onSurface,
                           ),
                         ],
                       );

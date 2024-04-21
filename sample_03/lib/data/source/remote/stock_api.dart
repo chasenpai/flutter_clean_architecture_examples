@@ -13,7 +13,8 @@ class StockApi {
   Future<http.Response> getListings({String apiKey = apiKey}) async {
     return await _client.get(
       Uri.parse(
-          '$baseUrl/query?function=LISTING_STATUS&apikey=$apiKey'),
+        '$baseUrl/query?function=LISTING_STATUS&apikey=$apiKey',
+      ),
     );
   }
 
@@ -23,8 +24,22 @@ class StockApi {
   }) async {
     final response = await _client.get(
       Uri.parse(
-          '$baseUrl/query?function=OVERVIEW&symbol=$symbol&apikey=$apiKey'),
+        '$baseUrl/query?function=OVERVIEW&symbol=$symbol&apikey=$apiKey',
+      ),
     );
     return CompanyInfoDto.fromJson(jsonDecode(response.body));
+  }
+
+  Future<http.Response> getIntradayInfo({
+    required String symbol,
+    String apiKey = apiKey,
+  }) async {
+    return await _client.get(
+      Uri.parse(
+        '$baseUrl/query?function=TIME_SERIES_INTRADAY'
+        '&symbol=$symbol&interval=60min'
+        '&datatype=csv&apikey=$apiKey',
+      ),
+    );
   }
 }

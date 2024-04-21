@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:us_stock/domain/model/company_info.dart';
+import 'package:us_stock/presentation/company_info/company_info_state.dart';
 import 'package:us_stock/presentation/company_info/company_info_view_model.dart';
+import 'package:us_stock/presentation/company_info/component/stock_chart.dart';
 
 class CompanyInfoScreen extends StatelessWidget {
   const CompanyInfoScreen({super.key});
@@ -27,6 +29,7 @@ class CompanyInfoScreen extends StatelessWidget {
               _buildBody(
                 state.companyInfo!,
                 context,
+                state,
               ),
           ],
         ),
@@ -34,9 +37,9 @@ class CompanyInfoScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildBody(CompanyInfo info, BuildContext context) {
+  Widget _buildBody(CompanyInfo info, BuildContext context, CompanyInfoState state) {
     TextStyle style = TextStyle(
-      color: Theme.of(context).colorScheme.secondary,
+      color: Theme.of(context).colorScheme.onSurface,
     );
     return Padding(
       padding: const EdgeInsets.all(16.0),
@@ -47,7 +50,7 @@ class CompanyInfoScreen extends StatelessWidget {
             info.name,
             style: style.copyWith(
               fontWeight: FontWeight.bold,
-              fontSize: 20.0,
+              fontSize: 24.0,
             ),
           ),
           Text(
@@ -70,6 +73,22 @@ class CompanyInfoScreen extends StatelessWidget {
             info.description,
             style: style,
           ),
+          const SizedBox(height: 24.0,),
+          Text(
+            'Market Summery',
+            style: style.copyWith(
+              fontWeight: FontWeight.bold,
+              fontSize: 18.0,
+            ),
+          ),
+          const SizedBox(height: 16.0,),
+          if(state.stockInfos.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: StockChart(
+                infos: state.stockInfos,
+              ),
+            ),
         ],
       ),
     );
