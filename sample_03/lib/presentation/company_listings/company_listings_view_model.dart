@@ -8,7 +8,7 @@ import 'package:us_stock/presentation/company_listings/company_listings_state.da
 class CompanyListingsViewModel with ChangeNotifier {
   final StockRepository _repository;
 
-  var _state = CompanyListingsState();
+  var _state = const CompanyListingsState();
   CompanyListingsState get state => _state;
 
   Timer? _debounce;

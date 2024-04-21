@@ -2,6 +2,7 @@ import 'package:us_stock/data/csv/company_listings_parser.dart';
 import 'package:us_stock/data/mapper/company_mapper.dart';
 import 'package:us_stock/data/source/local/stock_dao.dart';
 import 'package:us_stock/data/source/remote/stock_api.dart';
+import 'package:us_stock/domain/model/company_info.dart';
 import 'package:us_stock/domain/model/company_listing.dart';
 import 'package:us_stock/domain/repository/stock_repository.dart';
 import 'package:us_stock/util/result.dart';
@@ -43,7 +44,17 @@ class StockRepositoryImpl implements StockRepository {
       );
       return Result.success(remoteListings);
     }catch(e) {
-      return Result.error(Exception('data load failed..'));
+      return Result.error(Exception('data load failed : ${e.toString()}'));
+    }
+  }
+
+  @override
+  Future<Result<CompanyInfo>> getCompanyInfo(String symbol) async {
+    try{
+      final dto = await _api.getCompanyInfo(symbol: symbol);
+      return Result.success(dto.toCompanyInfo());
+    }catch(e) {
+      return Result.error(Exception('data load failed : ${e.toString()}'));
     }
   }
 }
